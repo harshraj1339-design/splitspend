@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB8yjAm-v91R-sHwq-rTRqCTudUQ8tpbT0",
+  apiKey: "AIzaSyB8yjAm-v91R-sHwq-rTRqCTuduQ8tpbT0",
   authDomain: "splitspend-865c9.firebaseapp.com",
   projectId: "splitspend-865c9",
   storageBucket: "splitspend-865c9.firebasestorage.app",
