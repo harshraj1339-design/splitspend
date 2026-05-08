@@ -6,7 +6,7 @@ import {
 
 import { auth } from "../firebase";
 
-export default function Login() {
+export default function Login({ setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [signup, setSignup] = useState(false);
@@ -19,65 +19,59 @@ export default function Login() {
           email,
           password
         );
-
-        window.location.href = "/";
       } else {
         await signInWithEmailAndPassword(
           auth,
           email,
           password
         );
-
-       window.location.href = "/";
       }
+
+      localStorage.setItem("user", email);
+      setUser(email);
+
     } catch (err) {
       alert(err.message);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-900 text-white">
-
-      <div className="bg-slate-800 p-10 rounded-3xl w-[400px] space-y-5">
-
-        <h1 className="text-4xl font-bold text-center">
+    <div className="min-h-screen flex items-center justify-center bg-slate-950">
+      <div className="bg-slate-900 p-10 rounded-3xl w-[350px] shadow-2xl">
+        <h1 className="text-4xl font-bold text-white text-center mb-8">
           {signup ? "Signup" : "Login"}
         </h1>
 
         <input
           type="email"
           placeholder="Email"
-          value={email}
+          className="w-full p-3 rounded-xl mb-4 bg-slate-800 text-white"
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-3 rounded-xl bg-slate-700"
         />
 
         <input
           type="password"
           placeholder="Password"
-          value={password}
+          className="w-full p-3 rounded-xl mb-6 bg-slate-800 text-white"
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-3 rounded-xl bg-slate-700"
         />
 
         <button
           onClick={handleAuth}
-          className="w-full bg-indigo-500 py-3 rounded-xl"
+          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl"
         >
           {signup ? "Signup" : "Login"}
         </button>
 
         <p
-          className="text-center cursor-pointer"
+          className="text-center text-slate-400 mt-5 cursor-pointer"
           onClick={() => setSignup(!signup)}
         >
           {signup
             ? "Already have account? Login"
-            : "Create Account"}
+            : "Create new account"}
         </p>
-
       </div>
-
     </div>
   );
 }
