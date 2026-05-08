@@ -156,6 +156,8 @@ export default function Dashboard() {
       {/* Header */}
       <div className="p-6 border-b border-white/10 flex justify-between items-center">
 
+      
+
         <div>
           <h1 className="text-4xl font-bold">
             SplitSpend
@@ -165,7 +167,24 @@ export default function Dashboard() {
             Expense Sharing Dashboard
           </p>
         </div>
+<button
+  onClick={() => {
+    if (
+      window.confirm(
+        "Reset all transactions and members?"
+      )
+    ) {
+      localStorage.removeItem("members");
+      localStorage.removeItem("transactions");
 
+      setMembers([]);
+      setTransactions([]);
+    }
+  }}
+  className="bg-red-500 hover:bg-red-600 px-5 py-3 rounded-2xl font-bold"
+>
+  Reset All
+</button>
       </div>
 
       <div className="grid lg:grid-cols-4 gap-6 p-6">
