@@ -9,7 +9,7 @@ const firebaseConfig = {
   storageBucket: "splitspend-865c9.firebasestorage.app",
   messagingSenderId: "73474868606",
   appId: "1:73474868606:web:1abcf3934c8d7c4cf99f2f",
-  measurementId: "G-ZS5XDZSP58"
+  measurementId: "G-ZS5XDZSP58",
 };
 
 const app = initializeApp(firebaseConfig);
