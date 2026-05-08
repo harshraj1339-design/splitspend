@@ -1,7 +1,7 @@
 import {
   collection,
   addDoc,
-  getDocs,
+  onSnapshot,
 } from "firebase/firestore";
 
 import { db } from "./firebase";
@@ -46,11 +46,22 @@ export default function App() {
   });
 
 useEffect(() => {
-  const fetchMembers = async () => {
-    const querySnapshot = await getDocs(
-      collection(db, "members")
-    );
+  const unsubscribe = onSnapshot(
+    collection(db, "members"),
+    (querySnapshot) => {
+      const memberList = [];
+      querySnapshot.forEach((doc) => {
+        memberList.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+      });
+      setMembers(memberList);
+    }
+  );
 
+  return () => unsubscribe();
+}, []);
     const memberList = [];
 
     querySnapshot.forEach((doc) => {
